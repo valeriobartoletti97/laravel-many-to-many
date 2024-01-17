@@ -39,6 +39,17 @@
             @error('url')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+            <div class="mb-3">
+                <div class="form-group">
+                    <h5>Select Technologies</h5>
+                    @foreach($technologies as $technology)
+                        <div class="form-check @error('technologies') is-invalid @enderror">
+                            <label class="form-check-label">{{$technology->name}}</label>
+                            <input class="form-check-input" type="checkbox" value="{{$technology->id}}" name="technologies[]" id="technologies" {{in_array($technology->id,old('technologies',[]))? 'checked' : '' }}>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
             <div class="d-flex mb-3 align-items-end">
                 <div class="me-1">
                     <img id="uploadPreview" width="200" src="https://via.placeholder.com/300x200">

@@ -26,7 +26,8 @@ class StoreProjectRequest extends FormRequest
             'language'=>['required', 'string', 'max:50'],
             'image' =>['nullable', 'image'] ,
             'url' =>['nullable', 'url','max:2048'],
-            'type_id' => ['nullable','exists:types,id']
+            'type_id' => ['nullable','exists:types,id'],
+            'technologies' => ['nullable','exists:technologies,id'],
         ];
     }
 
