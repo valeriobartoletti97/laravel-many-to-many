@@ -24,7 +24,7 @@ class UpdateTechnologyRequest extends FormRequest
     {
         return [
             //
-            'name'=> ['required', 'string', 'max:200', 'min:3',Rule::unique('types')->ignore($this->type)],
+            'name'=> ['required', 'string', 'max:200', 'min:3',Rule::unique('technologies')->ignore($this->type)],
         ];
     }
 

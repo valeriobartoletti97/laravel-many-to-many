@@ -15,6 +15,8 @@ class TechnologyController extends Controller
     public function index()
     {
         //
+        $technologies = Technology::all();
+        return view('admin.technologies.index',compact('technologies'));
     }
 
     /**
@@ -23,6 +25,7 @@ class TechnologyController extends Controller
     public function create()
     {
         //
+        return view('admin.technologies.create');
     }
 
     /**
@@ -39,6 +42,7 @@ class TechnologyController extends Controller
     public function show(Technology $technology)
     {
         //
+        return view('admin.technologies.show',compact('technology'));
     }
 
     /**
@@ -47,6 +51,8 @@ class TechnologyController extends Controller
     public function edit(Technology $technology)
     {
         //
+        return view('admin.technologies.edit',compact('technology'));
+
     }
 
     /**

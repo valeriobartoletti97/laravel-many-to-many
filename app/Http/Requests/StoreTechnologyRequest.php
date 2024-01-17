@@ -23,7 +23,7 @@ class StoreTechnologyRequest extends FormRequest
     {
         return [
             //
-            'name'=> ['required', 'string', 'max:200', 'min:3','unique:types'],
+            'name'=> ['required', 'string', 'max:200', 'min:3','unique:technologies'],
         ];
     }
 
