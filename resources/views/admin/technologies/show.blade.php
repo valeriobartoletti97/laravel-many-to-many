@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <h1>{{$type->name}}</h1>
+        <h1>{{$technology->name}}</h1>
         <h3>Project List</h3>
         <ul>
-            @forelse ($type->projects as $project)
+            @forelse ($technology->projects as $project)
                 <li> {{$project->name}}</li>
             @empty
                 <li>No projects</li>
