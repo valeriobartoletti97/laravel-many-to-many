@@ -28,6 +28,7 @@ class UpdateProjectRequest extends FormRequest
             'language'=>['required', 'string', 'max:50'],
             'url' =>['nullable', 'url','max:2048'],
             'technologies' => ['exists:technologies,id'],
+            'type_id' => ['nullable','exists:types,id'],
         ];
     }
 
