@@ -70,7 +70,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         //
-        
+
         return view('admin.projects.show', compact('project'));
     }
 
@@ -80,8 +80,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
+        $technologies = Technology::all();
         $types = types::all();
-        return view('admin.projects.edit', compact('project','types'));
+        return view('admin.projects.edit', compact('project','types','technologies'));
     }
 
     /**
@@ -107,6 +108,9 @@ class ProjectController extends Controller
         }
         
         $project->update($data);
+        if($request->has('technologies')){
+            $project->technologies()->sync($request->technologies);
+        }
         return to_route('admin.projects.show', $project->id);
     }
 
@@ -116,10 +120,12 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+        $project->technologies()->detach();
         if($project->image){
             Storage::delete($project->image);
         } 
         $project->delete();
+
         return to_route('admin.projects.index')->with('message', "$project->name successfully deleted");
     }
 }
