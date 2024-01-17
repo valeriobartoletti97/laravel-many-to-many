@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <h1 class="text-center mt-3">Edit {{$type->name}}</h1>
+        <h1 class="text-center mt-3">Edit {{$technology->name}}</h1>
         <form action="{{ route('admin.technologies.update', $technology->id) }}" method="POST">
             @csrf
             @method('PUT')

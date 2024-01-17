@@ -11,7 +11,7 @@
         @if($project->technologies)
         <div class="d-flex justify-content-center mb-2">
             @foreach ($project->technologies as $technology)
-                <a href="{{route('admin.technologies.show', $technology->slug)}}" class="badge text-bg-primary me-1">{{$technology->name}}</a>
+                <a href="{{route('admin.technologies.show', $technology->id)}}" class="badge text-uppercase text-bg-primary me-1">{{$technology->name}}</a>
             @endforeach
         </div>
         @endif
