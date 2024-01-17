@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\types;
+use App\Models\Type;
 use App\Http\Requests\StoretypesRequest;
 use App\Http\Requests\UpdatetypesRequest;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class TypesController extends Controller
     public function index()
     {
         //
-        $types = types::All();
+        $types = Type::All();
         return view('admin.types.index', compact('types'));
     }
 
@@ -41,14 +41,14 @@ class TypesController extends Controller
         $slug = Str::slug($data['name']). '-';
         //add slug to data
         $data['slug'] = $slug;
-        $type = types::create($data);
+        $type = Type::create($data);
         return to_route('admin.types.index', $type->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(types $type)
+    public function show(Type $type)
     {
         //
         return view('admin.types.show', compact('type'));
@@ -57,7 +57,7 @@ class TypesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(types $type)
+    public function edit(Type $type)
     {
         //
         return view('admin.types.edit', compact('type'));
@@ -66,7 +66,7 @@ class TypesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatetypesRequest $request, types $type)
+    public function update(UpdatetypesRequest $request, Type $type)
     {
         //
         $data = $request->validated();
@@ -83,7 +83,7 @@ class TypesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(types $type)
+    public function destroy(Type $type)
     {
         //
         $type->delete();

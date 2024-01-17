@@ -15,6 +15,12 @@
             @endforeach
         </div>
         @endif
-        <span class="d-block text-center text-uppercase project-type">Project Type: {{$project->type ? $project->type->name : 'Uncategorized'}}</span>
+        <span class="d-block text-center text-uppercase project-type">Project Type: 
+            @if($project->type)
+            <a href="{{route('admin.types.show', $project->type->id)}}" class="badge text-bg-success">{{$project->type ? $project->type->name : 'Uncategorized'}}</a>
+            @else
+            <span class="text-uppercase">Uncategorized</span>
+            @endif
+        </span>
     </section>
 @endsection

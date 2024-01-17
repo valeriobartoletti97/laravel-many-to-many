@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <h1>{{$type->name}}</h1>
+        <h1 class="text-center mt-3 mb-5 text-uppercase">{{$type->name}}</h1>
         <h3>Project List</h3>
         <ul>
             @forelse ($type->projects as $project)
-                <li> {{$project->name}}</li>
+                <li> <a href="{{route('admin.projects.show', $project->id)}}">{{$project->name}}</a></li>
             @empty
                 <li>No projects</li>
             @endforelse 
