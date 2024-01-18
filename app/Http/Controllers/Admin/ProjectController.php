@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
 use App\Models\Technology;
+use Illuminate\Support\Facades\Auth;
 
 use illuminate\Support\Str;
 
@@ -20,7 +21,8 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects = Project::all();
+        $currentUser= Auth::id();
+        $projects = Project::where('user_id', $currentUser)->get();
         return view ('admin.projects.index', compact('projects'));
     }
 
@@ -70,8 +72,10 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         //
-
-        return view('admin.projects.show', compact('project'));
+        if(Auth::id() == $project->user_id){
+            return view('admin.projects.show', compact('project'));
+        }
+        abort(403);
     }
 
     /**
@@ -128,6 +132,9 @@ class ProjectController extends Controller
         } 
         $project->delete();
 
-        return to_route('admin.projects.index')->with('message', "$project->name successfully deleted");
+        if(Auth::id() == $project->user_id){
+            return to_route('admin.projects.index')->with('message', "$project->name successfully deleted");
+        }
+        abort(403);
     }
 }
